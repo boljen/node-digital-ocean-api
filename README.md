@@ -2,7 +2,7 @@
 
 A thin wrapper for the Digital Ocean API (v2)
 
-*Work in progress, currently 5/52 methods implemented :(*
+*Work in progress, currently 7/52 methods implemented :(*
 
 ## Install
 
@@ -50,7 +50,7 @@ The callback itself is passed 3 arguments:
 A paginated resource will return an instance of 'Paginator' if you do not
 provide a callback. This object facilitates handling multi-page resources.
 
-    var paginator = api.getDroplets();
+    var paginator = api.listDroplets();
 
 The paginator has it's own api
 
@@ -77,13 +77,13 @@ create a new paginator object.
 
 If you provide a callback to a paginated resource
 
-    api.getDroplets(function(err, res) {
+    api.listDroplets(function(err, res) {
 
     });
 
 You basically are doing exactly the same as:
 
-    var paginator = api.getDroplets();
+    var paginator = api.listDroplets();
     paginator.getAll(function(err, res) {
 
     });
@@ -155,9 +155,9 @@ The striked-through methods are not yet implemented (or are implemented but
   * ~~updateSSHKey~~
   * ~~destroyKey~~
 * **Regions**
-  * ~~listRegions~~
+  * [listRegions](#listRegions)
 * **Sizes**
-  * ~~listSizes~~
+  * [listSizes](#listSizes)
 
 ### <a id="userInfo">getUserInformation(cb)</a>
 
@@ -178,6 +178,14 @@ The striked-through methods are not yet implemented (or are implemented but
 ### <a id="listDroplets">listDroplets(cb) (*)</a>
 
     api.listDroplets(function(err, actions) {});
+
+### <a id="listRegions">listRegions(cb)</a>
+
+    api.listRegions(function(err, actions) {});
+
+### <a id="listSizes">listSizes(cb)</a>
+
+    api.listSizes(function(err, actions) {});
 
 ## Custom requester function
 

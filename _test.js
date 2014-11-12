@@ -7,24 +7,24 @@ var api = new API({
   requester: require('request'),
 });
 
+function display(err, res) {
+  console.log(res);
+}
+
 var setup = {
   actionId: 35394395
 };
 
-///////// TEST REQUEST METHOD /////////
+
+///////// INTERNAL /////////
 /*
 api._request({
   target: 'actions',
   method: 'GET',
   limit: 10,
   page: 3,
-}, function(e, b) {
-  console.log(b);
-});
-*/
+}, display);
 
-///////// TEST PAGINATOR METHOD /////////
-/*
 var paginator = new Paginator({
   qry: {
     target: 'actions',
@@ -34,31 +34,18 @@ var paginator = new Paginator({
   limit: 10,
   content: 'actions',
 });
-paginator.getPage(1, function(error, actions) {
-  console.log(actions);
-});
-paginator.getAll(function(err, actions) {
-  console.log(actions.length);
-});
+paginator.getPage(1, display);
+paginator.getAll(display);
 */
 
 ///////// TEST METHODS /////////
 /*
-api.getUserInformation(function(e, info) {
-  console.log(info);
-});
 
-api.listActions().getAll(function(e, acts) {
-  console.log(acts.length);
-});
+api.getUserInformation(display;
+api.listActions().getAll(display);
+api.getAction(setup.actionId, display);
+api.listDomains().getAll(display);
 
-api.getAction(setup.actionId, function(err, res) {
-  console.log(res);
-});
-
-api.listDomains().getAll(function(err, list) {
-  console.log(list);
-});
 createDomain
 retrieveDomain
 deleteDomain
@@ -69,12 +56,10 @@ updateDomainRecord
 deleteDomainRecord
 createDroplet
 getDropletById
-*/
-api.listDroplets().getAll(function(err, list) {
-  console.log(list);
-});
 
-/*listAvailableKernels
+api.listDroplets().getAll(display);
+
+listAvailableKernels
 getDropletSnapshots
 getDropletBackups
 getDropletActions
@@ -109,6 +94,7 @@ createSSHKey
 getSSHKey
 updateSSHKey
 destroyKey
-listRegions
-listSizes
+
+api.listRegions(display);
+api.listSizes(display);
 */
