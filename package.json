@@ -1,0 +1,28 @@
+{
+  "name": "digital-ocean-api",
+  "version": "0.0.0",
+  "description": "A thin wrapper for the Digital Ocean API (v2)",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test --require=should"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/boljen/node-digital-ocean-api.git"
+  },
+  "keywords": [
+    "digital",
+    "ocean",
+    "api",
+    "v2"
+  ],
+  "author": "Christophe Bol",
+  "license": "LGPLv3",
+  "bugs": {
+    "url": "https://github.com/boljen/node-digital-ocean-api/issues"
+  },
+  "homepage": "https://github.com/boljen/node-digital-ocean-api",
+  "devDependencies": {
+    "request": "^2.47.0"
+  }
+}
