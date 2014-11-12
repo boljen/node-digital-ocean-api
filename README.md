@@ -2,7 +2,7 @@
 
 A thin wrapper for the Digital Ocean API (v2)
 
-*Work in progress, currently 3/52 methods implemented :(*
+*Work in progress, currently 5/52 methods implemented :(*
 
 ## Install
 
@@ -95,58 +95,69 @@ The striked-through methods are not yet implemented (or are implemented but
 
 (*) : paginated resource
 
-* [getUserInformation](#userInfo)
-* [listActions (*)](#listActions)
-* [getAction](#getAction)
-* ~~listDomains~~
-* ~~createDomain~~
-* ~~retrieveDomain~~
-* ~~deleteDomain~~
-* ~~listDomainRecords~~
-* ~~retrieveDomainRecord~~
-* ~~createDomainRecord~~
-* ~~updateDomainRecord~~
-* ~~deleteDomainRecord~~
-* ~~createDroplet~~
-* ~~getDropletById~~
-* ~~listDroplets~~
-* ~~listAvailableKernels~~
-* ~~getDropletSnapshots~~
-* ~~getDropletBackups~~
-* ~~getDropletActions~~
-* ~~deleteDroplet~~
-* ~~disableDropletBackups~~
-* ~~rebootDroplet~~
-* ~~powerCycleDroplet~~
-* ~~shutdownDroplet~~
-* ~~powerOffDroplet~~
-* ~~powerOnDroplet~~
-* ~~restoreDroplet~~
-* ~~passwordResetDroplet~~
-* ~~resizeDroplet~~
-* ~~rebuildDroplet~~
-* ~~renameDroplet~~
-* ~~changeDropletKernel~~
-* ~~enableIpv6Droplet~~
-* ~~enableDropletPrivateNetwork~~
-* ~~snapshotDroplet~~
-* ~~getDropletAction~~
-* ~~listImages~~
-* ~~listDistributionImages~~
-* ~~listApplicationImages~~
-* ~~getImage~~
-* ~~getImageBySlug~~
-* ~~updateImage~~
-* ~~deleteImage~~
-* ~~transferImage~~
-* ~~getImageAction~~
-* ~~listSSHKeys~~
-* ~~createSSHKey~~
-* ~~getSSHKey~~
-* ~~updateSSHKey~~
-* ~~destroyKey~~
-* ~~listRegions~~
-* ~~listSizes~~
+* **Account**
+  * [getUserInformation](#userInfo)
+* **Actions**
+  * [listActions (*)](#listActions)
+  * [getAction](#getAction)
+* **Domains**
+  * [listDomains (*)](#listDomains)
+  * ~~createDomain~~
+  * ~~retrieveDomain~~
+  * ~~deleteDomain~~
+* **Domain Records**
+  * ~~listDomainRecords~~
+  * ~~retrieveDomainRecord~~
+  * ~~createDomainRecord~~
+  * ~~updateDomainRecord~~
+  * ~~deleteDomainRecord~~
+* **Droplets**
+  * [listDroplets (*)](#listDroplets)
+  * ~~getDropletById~~
+  * ~~createDroplet~~
+  * ~~listAvailableKernels~~
+  * ~~getDropletSnapshots~~
+  * ~~getDropletBackups~~
+  * ~~getDropletActions~~
+  * ~~deleteDroplet~~
+* **Droplet actions**
+  * ~~disableDropletBackups~~
+  * ~~rebootDroplet~~
+  * ~~powerCycleDroplet~~
+  * ~~shutdownDroplet~~
+  * ~~powerOffDroplet~~
+  * ~~powerOnDroplet~~
+  * ~~restoreDroplet~~
+  * ~~passwordResetDroplet~~
+  * ~~resizeDroplet~~
+  * ~~rebuildDroplet~~
+  * ~~renameDroplet~~
+  * ~~changeDropletKernel~~
+  * ~~enableIpv6Droplet~~
+  * ~~enableDropletPrivateNetwork~~
+  * ~~snapshotDroplet~~
+  * ~~getDropletAction~~
+* **Images**
+  * ~~listImages~~
+  * ~~listDistributionImages~~
+  * ~~listApplicationImages~~
+  * ~~getImage~~
+  * ~~getImageBySlug~~
+  * ~~updateImage~~
+  * ~~deleteImage~~
+* **Image Actions**
+  * ~~transferImage~~
+  * ~~getImageAction~~
+* **SSH Keys**
+  * ~~listSSHKeys~~
+  * ~~createSSHKey~~
+  * ~~getSSHKey~~
+  * ~~updateSSHKey~~
+  * ~~destroyKey~~
+* **Regions**
+  * ~~listRegions~~
+* **Sizes**
+  * ~~listSizes~~
 
 ### <a id="userInfo">getUserInformation(cb)</a>
 
@@ -159,6 +170,14 @@ The striked-through methods are not yet implemented (or are implemented but
 ### <a id="getAction">getAction(id, cb)</a>
 
     api.getAction(id, function(err, action) {});
+
+### <a id="listDomains">listDomains(cb) (*)</a>
+
+    api.listDomains(function(err, actions) {});
+
+### <a id="listDroplets">listDroplets(cb) (*)</a>
+
+    api.listDomains(function(err, actions) {});
 
 ## Custom requester function
 

@@ -55,16 +55,60 @@ api.listActions().getAll(function(e, acts) {
 api.getAction(setup.actionId, function(err, res) {
   console.log(res);
 });
+
+api.listDomains().getAll(function(err, list) {
+  console.log(list);
+});
+createDomain
+retrieveDomain
+deleteDomain
+listDomainRecords
+retrieveDomainRecord
+createDomainRecord
+updateDomainRecord
+deleteDomainRecord
+createDroplet
+getDropletById
 */
-
-
-
-/*
-api.listSizes(function(err, data) {
-  console.log(data);
+api.listDroplets().getAll(function(err, list) {
+  console.log(list);
 });
 
-api.listRegions(function(e, d) {
-  console.log(d);
-});
+/*listAvailableKernels
+getDropletSnapshots
+getDropletBackups
+getDropletActions
+deleteDroplet
+disableDropletBackups
+rebootDroplet
+powerCycleDroplet
+shutdownDroplet
+powerOffDroplet
+powerOnDroplet
+restoreDroplet
+passwordResetDroplet
+resizeDroplet
+rebuildDroplet
+renameDroplet
+changeDropletKernel
+enableIpv6Droplet
+enableDropletPrivateNetwork
+snapshotDroplet
+getDropletAction
+listImages
+listDistributionImages
+listApplicationImages
+getImage
+getImageBySlug
+updateImage
+deleteImage
+transferImage
+getImageAction
+listSSHKeys
+createSSHKey
+getSSHKey
+updateSSHKey
+destroyKey
+listRegions
+listSizes
 */
