@@ -177,7 +177,7 @@ The striked-through methods are not yet implemented (or are implemented but
 
 ### <a id="listDroplets">listDroplets(cb) (*)</a>
 
-    api.listDomains(function(err, actions) {});
+    api.listDroplets(function(err, actions) {});
 
 ## Custom requester function
 
