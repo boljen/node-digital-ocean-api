@@ -7,6 +7,9 @@ var api = new API({
   requester: require('request'),
 });
 
+var setup = {
+  actionId: 35394395
+};
 
 ///////// TEST REQUEST METHOD /////////
 /*
@@ -44,11 +47,15 @@ paginator.getAll(function(err, actions) {
 api.getUserInformation(function(e, info) {
   console.log(info);
 });
-*/
 
 api.listActions().getAll(function(e, acts) {
   console.log(acts.length);
 });
+
+api.getAction(setup.actionId, function(err, res) {
+  console.log(res);
+});
+*/
 
 
 

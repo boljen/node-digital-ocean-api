@@ -2,7 +2,7 @@
 
 A thin wrapper for the Digital Ocean API (v2)
 
-*Work in progress, currently 1/52 methods implemented :(*
+*Work in progress, currently 3/52 methods implemented :(*
 
 ## Install
 
@@ -93,9 +93,9 @@ You basically are doing exactly the same as:
 The striked-through methods are not yet implemented (or are implemented but
   have not had the opportunity to go through basic testing)
 
-* [getUserInformation](USERINFO)
-* ~~listActions~~
-* ~~getAction~~
+* [getUserInformation](#getUserInformation)
+* [listActions](#listActions)
+* [getAction]()
 * ~~listDomains~~
 * ~~createDomain~~
 * ~~retrieveDomain~~
@@ -146,11 +146,19 @@ The striked-through methods are not yet implemented (or are implemented but
 * ~~listRegions~~
 * ~~listSizes~~
 
-### getUserInformation(cb)
+### getUserInformation
 
-    api.getUserInformation(function(e, info) {
+    api.getUserInformation(function(err, info) {});
 
-    });
+### listActions
+
+*Paginated*
+
+    api.listActions(function(err, actions) {});
+
+### getAction(id, cb)
+
+    api.getAction(id, function(err, action) {});
 
 ## Custom requester function
 
