@@ -93,9 +93,11 @@ You basically are doing exactly the same as:
 The striked-through methods are not yet implemented (or are implemented but
   have not had the opportunity to go through basic testing)
 
+(*) : paginated resource
+
 * [getUserInformation](#getUserInformation)
-* [listActions](#listActions)
-* [getAction]()
+* [listActions (*)](#listActions)
+* [getAction](#getAction)
 * ~~listDomains~~
 * ~~createDomain~~
 * ~~retrieveDomain~~
@@ -146,17 +148,15 @@ The striked-through methods are not yet implemented (or are implemented but
 * ~~listRegions~~
 * ~~listSizes~~
 
-### getUserInformation
+### getUserInformation(cb) <a id="getUserInformation"></a>
 
     api.getUserInformation(function(err, info) {});
 
-### listActions
-
-*Paginated*
+### listActions(cb) (*)<a id="listActions"></a>
 
     api.listActions(function(err, actions) {});
 
-### getAction(id, cb)
+### getAction(id, cb) <a id="getAction"></a>
 
     api.getAction(id, function(err, action) {});
 
