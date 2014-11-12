@@ -2,6 +2,8 @@
 
 A thin wrapper for the Digital Ocean API (v2)
 
+*Work in progress, currently 1/52 methods implemented :(*
+
 ## Install
 
     npm install digital-ocean-api

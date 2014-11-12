@@ -7,9 +7,9 @@ var api = new API({
   requester: require('request'),
 });
 
-/*
 
-///////// TEST REQUEST METHOD
+///////// TEST REQUEST METHOD /////////
+/*
 api._request({
   target: 'actions',
   method: 'GET',
@@ -18,9 +18,10 @@ api._request({
 }, function(e, b) {
   console.log(b);
 });
+*/
 
-
-//////// TEST PAGINATOR METHOD
+///////// TEST PAGINATOR METHOD /////////
+/*
 var paginator = new Paginator({
   qry: {
     target: 'actions',
@@ -36,17 +37,21 @@ paginator.getPage(1, function(error, actions) {
 paginator.getAll(function(err, actions) {
   console.log(actions.length);
 });
+*/
 
-
-
-//////// TEST METHODS
+///////// TEST METHODS /////////
+/*
 api.getUserInformation(function(e, info) {
   console.log(info);
 });
 */
-api.listActions(function(e, info) {
-  console.log(info);
+
+api.listActions().getAll(function(e, acts) {
+  console.log(acts.length);
 });
+
+
+
 /*
 api.listSizes(function(err, data) {
   console.log(data);
