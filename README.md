@@ -118,7 +118,7 @@ The striked-through methods are not yet implemented (or are implemented but
   * [getDropletBackups (*)](#dropletBackups)
   * [getDropletActions (*)](#dropletActions)
   * ~~createDroplet~~
-  * [deleteDroplet (*)](#deleteDroplet)
+  * [deleteDroplet](#deleteDroplet)
 * **Droplet actions**
   * ~~disableDropletBackups~~
   * ~~rebootDroplet~~
