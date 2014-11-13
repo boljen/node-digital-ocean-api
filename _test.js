@@ -12,7 +12,8 @@ function display(err, res) {
 }
 
 var setup = {
-  actionId: 35394395
+  actionId: 35394395,
+  dropletId: 3146194,
 };
 
 
@@ -54,15 +55,16 @@ retrieveDomainRecord
 createDomainRecord
 updateDomainRecord
 deleteDomainRecord
-createDroplet
-getDropletById
 
 api.listDroplets().getAll(display);
+api.getDroplet(setup.dropletId, display);
+api.listAvailableKernels(setup.dropletId, display);
 
-listAvailableKernels
-getDropletSnapshots
+*/
+/*getDropletSnapshots
 getDropletBackups
 getDropletActions
+createDroplet
 deleteDroplet
 disableDropletBackups
 rebootDroplet

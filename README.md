@@ -2,7 +2,7 @@
 
 A thin wrapper for the Digital Ocean API (v2)
 
-*Work in progress, currently 7/52 methods implemented :(*
+*Work in progress, currently 9/52 methods implemented*
 
 ## Install
 
@@ -38,11 +38,10 @@ be called in such a way.
 
     api.doSomethingElse(arg1, arg2, callback);
 
-The callback itself is passed 3 arguments:
+The callback itself is passed 2 arguments:
 
-    api.getSizes(function(error, sizes, responseObject) {
-      // sizes is an array containing all sizes
-      // responseObject is the object returned by the requester function
+    api.doSomething(function(error, data) {
+
     });
 
 ### Paginated resources
@@ -113,12 +112,12 @@ The striked-through methods are not yet implemented (or are implemented but
   * ~~deleteDomainRecord~~
 * **Droplets**
   * [listDroplets (*)](#listDroplets)
-  * ~~getDropletById~~
-  * ~~createDroplet~~
-  * ~~listAvailableKernels~~
+  * [getDroplet](#getDroplet)
+  * [listAvailableKernels (*)](#availableKernels)
   * ~~getDropletSnapshots~~
   * ~~getDropletBackups~~
   * ~~getDropletActions~~
+  * ~~createDroplet~~
   * ~~deleteDroplet~~
 * **Droplet actions**
   * ~~disableDropletBackups~~
@@ -178,6 +177,14 @@ The striked-through methods are not yet implemented (or are implemented but
 ### <a id="listDroplets">listDroplets(cb) (*)</a>
 
     api.listDroplets(function(err, actions) {});
+
+### <a id="getDroplet">getDroplet(id, cb)</a>
+
+    api.getDroplet(id, function(err, action) {});
+
+### <a id="availableKernels">listAvailableKernels(dropletId, cb) (*)</a>
+
+    api.listAvailableKernels(function(err, actions) {});
 
 ### <a id="listRegions">listRegions(cb)</a>
 
