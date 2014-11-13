@@ -2,7 +2,7 @@
 
 A thin wrapper for the Digital Ocean API (v2)
 
-*Work in progress, currently 9/52 methods implemented*
+*Work in progress, currently 13/52 methods implemented*
 
 ## Install
 
@@ -114,11 +114,11 @@ The striked-through methods are not yet implemented (or are implemented but
   * [listDroplets (*)](#listDroplets)
   * [getDroplet](#getDroplet)
   * [listAvailableKernels (*)](#availableKernels)
-  * ~~getDropletSnapshots~~
-  * ~~getDropletBackups~~
-  * ~~getDropletActions~~
+  * [getDropletSnapshots (*)](#dropletSnapshots)
+  * [getDropletBackups (*)](#dropletBackups)
+  * [getDropletActions (*)](#dropletActions)
   * ~~createDroplet~~
-  * ~~deleteDroplet~~
+  * [deleteDroplet (*)](#deleteDroplet)
 * **Droplet actions**
   * ~~disableDropletBackups~~
   * ~~rebootDroplet~~
@@ -174,25 +174,45 @@ The striked-through methods are not yet implemented (or are implemented but
 
     api.listDomains(function(err, actions) {});
 
+
+
 ### <a id="listDroplets">listDroplets(cb) (*)</a>
 
-    api.listDroplets(function(err, actions) {});
+    api.listDroplets(function(err, droplets) {});
 
 ### <a id="getDroplet">getDroplet(id, cb)</a>
 
-    api.getDroplet(id, function(err, action) {});
+    api.getDroplet(id, function(err, droplet) {});
 
 ### <a id="availableKernels">listAvailableKernels(dropletId, cb) (*)</a>
 
-    api.listAvailableKernels(function(err, actions) {});
+    api.listAvailableKernels(function(err, kernels) {});
+
+### <a id="dropletSnapshots">getDropletSnapshots(dropletId, cb) (*)</a>
+
+    api.getDropletSnapshots(id, function(err, snapshots) {});
+
+### <a id="dropletBackups">getDropletBackups(dropletId, cb) (*)</a>
+
+    api.getDropletBackups(id, function(err, backups) {});
+
+### <a id="dropletActions">getDropletActions(dropletId, cb) (*)</a>
+
+    api.getDropletActions(id, function(err, actions) {});
+
+### <a id="deleteDroplet">deleteDroplet(dropletId, cb)</a>
+
+If the droplet has been successfully deleted, success will be true.
+
+    api.deleteDroplet(id, function(err, success) {});
 
 ### <a id="listRegions">listRegions(cb)</a>
 
-    api.listRegions(function(err, actions) {});
+    api.listRegions(function(err, regions) {});
 
 ### <a id="listSizes">listSizes(cb)</a>
 
-    api.listSizes(function(err, actions) {});
+    api.listSizes(function(err, sizes) {});
 
 ## Custom requester function
 
@@ -219,6 +239,7 @@ CORS functionality should be built into this requester function.
 ## TODO
 
 * Exhaustive unit testing with mock requester
+* Verify success of deleteDroplet action
 
 ## License
 

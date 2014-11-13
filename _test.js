@@ -8,12 +8,14 @@ var api = new API({
 });
 
 function display(err, res) {
+  if (err)
+    return console.log('ERROR:', err);
   console.log(res);
 }
 
 var setup = {
   actionId: 35394395,
-  dropletId: 3146194,
+  dropletId: 3146914,
 };
 
 
@@ -59,12 +61,14 @@ deleteDomainRecord
 api.listDroplets().getAll(display);
 api.getDroplet(setup.dropletId, display);
 api.listAvailableKernels(setup.dropletId, display);
+api.getDropletSnapshots(setup.dropletId, display);
+api.getDropletBackups(setup.dropletId, display);
+api.getDropletActions(setup.dropletId, display);
 
-*/
-/*getDropletSnapshots
-getDropletBackups
-getDropletActions
 createDroplet
+
+api.deleteDroplet(setup.dropletId, display);
+
 deleteDroplet
 disableDropletBackups
 rebootDroplet
