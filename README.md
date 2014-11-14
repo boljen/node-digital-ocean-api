@@ -4,11 +4,11 @@ A thin wrapper for the Digital Ocean API (v2)
 
 ## Install
 
+First get the package through NPM
+
     npm install digital-ocean-api
 
-## Quick Start
-
-First you must create an instance of the DigitalOceanApi class
+Now set it up inside your application
 
     var DigitalOceanApi = require('digital-ocean-api');
 
@@ -16,13 +16,61 @@ First you must create an instance of the DigitalOceanApi class
       token: 'yourAccessToken'
     });
 
-Now, simply call the available methods:
 
-    api.getDroplet(dropletId, function(error, droplet) {
-        // droplet contains droplet metadata
-    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Methods
+
+### api.request(query, callback)
+
+This is the function on which all the specific API methods are built. It offers
+a very simple way to more easily perform requests.
+
+The *query* is pretty straight forward. Obviously the 'limit' and 'page' are not
+required for resources which are not paginated.
+
+    var query = {
+      target: 'droplets',
+      method: 'GET',
+      limit: 10,
+      page: 2,
+    };
+
+The callback is more 'raw' than the actual implemented methods:
+
+    var callback = function(error, data) {
+      // data.headers
+      // data.body
+      // data.status
+    }
 
 ## Usage
+
+###
 
 This library is callback-oriented and a lot of methods share behavior with
 each other. This chapter is mostly about the shared behavior. We have to start
@@ -95,7 +143,7 @@ actually an exhaustive list.
   this error pops up, something went wrong with the request. This error will
   contain the original error as returned by your request function.
 * ***request_implementation_error***: WHen your implementation is flawed, this
-  will most likely never occur. 
+  will most likely never occur.
 * ***internal_error***: When the server responds with an internal error status.
   This will be returned when digital ocean has issues on their end.
 * ***rate_limit_exceeded***: When you have exceeded your rate

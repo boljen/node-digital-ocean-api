@@ -1,3 +1,4 @@
+/* Contains basic integration testing */
 
 var API = require('./');
 
@@ -8,7 +9,7 @@ var api = new API({
 function display(err, data) {
   if (err)
     return console.log('ERROR:', err, '\nBODY:', data);
-  console.log(res);
+  console.log(data.body);
 }
 
 var setup = {
@@ -16,9 +17,11 @@ var setup = {
   dropletId: 3146914,
 };
 
-api._request({
+api.request({
   target: 'actions',
   method: 'GET',
+  limit: 10,
+  page: 2,
 }, display);
 
 ///////// INTERNAL /////////

@@ -22,19 +22,19 @@ describe('.DigitalOceanApi', function() {
         request: rqfx
       });
       api._token.should.equal('jos');
-      api._requester.should.equal(rqfx);
+      api._request.should.equal(rqfx);
     });
 
     it('Should use request package if no request function given', function() {
       var api = new DigitalOceanApi({
         token: 'jos'
       });
-      api._requester.should.equal(require('./../lib/request'));
+      api._request.should.equal(require('./../lib/request'));
     });
 
   });
 
-  describe('_request', function() {
+  describe('request', function() {
 
     it.skip('Should send to buildRequest', function() {
 
@@ -42,13 +42,13 @@ describe('.DigitalOceanApi', function() {
 
 
     it('Must pass a request object to the request function', function(done) {
-      api._requester = function(request, cb) {
+      api._request = function(request, cb) {
         request.method.should.equal('GET');
         request.headers['Content-Type'].should.equal('application/json');
         cb();
       };
 
-      api._request({}, function() {
+      api.request({}, function() {
         done();
       });
 
@@ -56,10 +56,10 @@ describe('.DigitalOceanApi', function() {
 
     it('If an error is returned, must turn it into a request_error', function(done) {
         var e = new Error('test error');
-        api._requester = function(request, cb) {
+        api._request = function(request, cb) {
           cb(e);
         };
-        api._request({}, function(error) {
+        api.request({}, function(error) {
           error.code.should.equal('request_error');
           error.original.should.equal(e);
           done();
