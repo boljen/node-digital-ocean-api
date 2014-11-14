@@ -13,7 +13,7 @@ function display(err, data) {
 }
 
 var setup = {
-  actionId: 35394395,
+  actionId: '35394395',
   dropletId: 3146914,
 };
 
@@ -39,10 +39,11 @@ paginator.getAll(display);
 
 api.getUserInfo(display);
 api.listActions().getAll(display);
+api.getAction(setup.actionId, display);
 */
 
-/*
-api.getAction(setup.actionId, display);
+
+/*// NOT DONE YET!!
 api.listDomains().getAll(display);
 api.createDomain
 api.retrieveDomain

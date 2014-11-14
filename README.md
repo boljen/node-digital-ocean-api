@@ -4,16 +4,16 @@ A thin wrapper for the Digital Ocean API (v2)
 
 ## Table of Content
 
-* [Installation]()
-* [Usage]()
-  * [Callbacks]()
-  * [Errors]()
-  * [Paginated Resources]()
-* [Methods]()
-* [Todo]()
-* [License]()
+* [Installation](#install)
+* [Usage](#usage)
+  * [Callbacks](#callbacks)
+  * [Errors](#errors)
+  * [Paginated Resources](#paginated)
+* [Methods](#methods)
+* [Todo](#todo)
+* [License](#license)
 
-## Install
+## <a id="install"></a>Install
 
 First get the package through NPM
 
@@ -27,16 +27,16 @@ Now set it up inside your application
       token: 'yourAccessToken'
     });
 
-## Usage
+## <a id="usage"></a>Usage
 
-### Callbacks
+### <a id="callbacks"></a>Callbacks
 
 All the methods utilize the same callback interface, except for the Paginator
 getPageRange method.
 
     function(error, data) {};
 
-### Errors
+### <a id="errors"></a>Errors
 
 Errors are created internally following the following pattern:
 
@@ -61,7 +61,7 @@ Some methods might add additional possible errors and in the future we'd like to
 further differentiate between all the errors (e.g. ratelimit exceeded, auth
   failed, ...)
 
-### Paginated resources
+### <a id="paginated"></a>Paginated resources
 
 When a method accesses a paginated resource, you can pass along a callback and
 exhaust the entire resource, or you don't provide a callback in which you will
@@ -91,7 +91,7 @@ to find out which page it is.
     });
 
 
-## Methods
+## <a id="methods"></a>Methods
 
 Refer to the actual [API Documentation](https://developers.digitalocean.com/v2)
 to learn what the returned values can be. Bear in mind that the returned data
@@ -99,12 +99,13 @@ is sanitized.
 
 * [getUserInfo](#getUserInfo)
 * [listActions](#listActions)
+* [getAction](#getAction)
 
 ### <a id="getUserInfo"></a>Get User Information
 
     api.getUserInfo(callback);
 
-### <a id="listActions">List All Actions
+### <a id="listActions"></a>List All Actions
 
     // Exhaustive call (not recommended here)
     api.listActions(callback);
@@ -112,11 +113,15 @@ is sanitized.
     // Paginator object
     var paginator = api.listActions();
 
-## TODO
+### <a id="getAction"></a>Retrieve an Action
+
+    api.getAction(actionIdentifier, callback)
+
+## <a id="todo"></a>TODO
 
 * Errors can be dealt with more gracefully..
 * There aren't all that many unit tests either
 
-## License
+## <a id="license"></a>License
 
 LGPLv3
