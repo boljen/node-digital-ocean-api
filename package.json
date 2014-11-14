@@ -1,8 +1,8 @@
 {
   "name": "digital-ocean-api",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "description": "A thin wrapper for the Digital Ocean API (v2)",
-  "main": "index.js",
+  "main": "lib/api.js",
   "scripts": {
     "test": "mocha test --require=should"
   },
@@ -23,6 +23,8 @@
   },
   "homepage": "https://github.com/boljen/node-digital-ocean-api",
   "devDependencies": {
-    "request": "^2.47.0"
+    "mocha": "^2.0.1",
+    "request": "^2.47.0",
+    "should": "^4.3.0"
   }
 }

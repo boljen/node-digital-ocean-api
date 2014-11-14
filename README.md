@@ -2,244 +2,181 @@
 
 A thin wrapper for the Digital Ocean API (v2)
 
-*Work in progress, currently 13/52 methods implemented*
-
 ## Install
 
     npm install digital-ocean-api
 
-## Setup
+## Quick Start
 
-First load the class and helpers in your application:
+First you must create an instance of the DigitalOceanApi class
 
     var DigitalOceanApi = require('digital-ocean-api');
-    var request = require('request');
 
-Next create your configuration:
+    var api = new DigitalOceanApi({
+      token: 'yourAccessToken'
+    });
 
-    var cfg = {
-      token: '...',       // Your access token
-      requester: request, // function which executes HTTP requests
-    };
+Now, simply call the available methods:
 
-Finally create an instance:
-
-    var api = new DigitalOceanApi(cfg);
+    api.getDroplet(dropletId, function(error, droplet) {
+        // droplet contains droplet metadata
+    });
 
 ## Usage
 
-### Regular usage
+This library is callback-oriented and a lot of methods share behavior with
+each other. This chapter is mostly about the shared behavior. We have to start
+first with the instantiation though.
 
-Every single method can be called by applying a callback as the final argument,
-even the paginated resources (in which case all results will be retrieved) can
-be called in such a way.
+### Callbacks
 
-    api.doSomething(callback);
+Every single API method can be called directly by providing a callback function.
+The callback always has the same fundamental interface and are very node-esque;
 
-    api.doSomethingElse(arg1, arg2, callback);
+    var callback = function(error, data) {
 
-The callback itself is passed 2 arguments:
+    };
 
-    api.doSomething(function(error, data) {
+By default, when a call doesn't do what it's supposed to do, it will return an
+error object.
 
-    });
+
 
 ### Paginated resources
 
-A paginated resource will return an instance of 'Paginator' if you do not
-provide a callback. This object facilitates handling multi-page resources.
+This is another big aspect of this library, as a lot of api calls are about
+accessing paginated resources. While all the paginated methods can be called by
+using the traditional callback, you can also go about it another way.
+
+Since paginated resources can be substantial, and since providing a callback to
+the method will exhaust the entire resource, it is recommended to actually
+leverage the pagination functionality of the API.
+
+More specifically, if you do not provide a callback to a paginated method, the
+method will return an instance of 'PaginatedRequester'. This is a helper class
+which gives you a lot more control over the retrieval of the data. It's a small
+api in and on itself, which you can use to access the specific resource.
 
     var paginator = api.listDroplets();
 
-The paginator has it's own api
+The paginator has a couple of methods itself:
 
-    // Get page 1
-    paginator.getPage(1, function(err, data) {})
+* ***getPage(pageNumber, callback)***: will get the specified page.
+* ***getPageRange(start, stop, callback)***: This will attempt to retrieve all
+  the pages within the range.
+* ***getAll(callback)***: will exhaust the entire resource.
+* ***setLimit(limit)***: Set the maximum entries per page.
+* ***setBulkLimit(limit)***: When calling getAll(), this is the items per page
+  which will be used.
 
-    // Get page 1 to 4, callback is called asynchronous
-    paginator.getPageRange(1, 4, function(err, data, page) {});
+The getPageRange is the only method to access the api inside this library which
+does not respect the same callback interface. Since it's an asynchronous
+function it will call the callback whenver it gets back results from a page. The
+order is rather random and as such it's important to provide an easy-to-use api
+to find out which page it is.
 
-    // Get all resources
-    paginator.getAll(function(err, data) {});
-
-You can also configure the paginator. You shouldn't touch these configurations
-after you started using the object. If you need a different configuration, then
-create a new paginator object.
-
-    // Set the amount of entries retrieved per page.
-    paginator.pageSize(10);
-
-    // Same as above, applies to getAll method
-    paginator.bulkSize(100);
-
-**Under the hood**
-
-If you provide a callback to a paginated resource
-
-    api.listDroplets(function(err, res) {
+    paginator.getPageRange(1, 5, function(error, page, data) {
 
     });
 
-You basically are doing exactly the same as:
 
-    var paginator = api.listDroplets();
-    paginator.getAll(function(err, res) {
 
+### Errors
+
+There are the errors which can be returned with the callback. This is not an
+exhaustive list, as each method might have it's own custom error types, you
+will need to check out the specific method documentation if you want to be
+certain.
+
+Typically, methods won't implement their own errors and the following list is
+actually an exhaustive list.
+
+* ***request_error***: This is an error returned by the request function. When
+  this error pops up, something went wrong with the request. This error will
+  contain the original error as returned by your request function.
+* ***request_implementation_error***: WHen your implementation is flawed, this
+  will most likely never occur. 
+* ***internal_error***: When the server responds with an internal error status.
+  This will be returned when digital ocean has issues on their end.
+* ***rate_limit_exceeded***: When you have exceeded your rate
+  limit, this error will be returned.
+* ***authentication_failed***: When the authentication of your request failed.
+* ***not_found***: When the server returns a 404 status because it did not find
+  the resource.
+
+An error is created internally with the following pattern. It's very straight
+forward and is built to allow the developer to easily check for specific errors.
+
+    var error = new Error('message');
+    error.code = 'string_coded_error';
+    error.original = errorObject; // if applicable
+
+
+
+
+
+
+## Custom request function
+
+HTTP requests aren't performed by this package. Rather, you must provide a
+function which conforms to a predefined API explained in this chapter. This is
+done inside the API constructor;
+
+    var api = new Api({
+      token: 'your..;token',
+      request: myRequestFunction,
     });
 
-## Methods
 
-The striked-through methods are not yet implemented (or are implemented but
-  have not had the opportunity to go through basic testing)
+### Before: built-in wrapper
 
-(*) : paginated resource
+There's a wrapper inside this package around the npm [request](https://www.npmjs.org/package/request)
+package. It's a great method for server-side http requests but depending on
+your requirements, or if you're using this library inside a browser, you might
+need to pass on your own request execution function.
 
-* **Account**
-  * [getUserInformation](#userInfo)
-* **Actions**
-  * [listActions (*)](#listActions)
-  * [getAction](#getAction)
-* **Domains**
-  * [listDomains (*)](#listDomains)
-  * ~~createDomain~~
-  * ~~retrieveDomain~~
-  * ~~deleteDomain~~
-* **Domain Records**
-  * ~~listDomainRecords~~
-  * ~~retrieveDomainRecord~~
-  * ~~createDomainRecord~~
-  * ~~updateDomainRecord~~
-  * ~~deleteDomainRecord~~
-* **Droplets**
-  * [listDroplets (*)](#listDroplets)
-  * [getDroplet](#getDroplet)
-  * [listAvailableKernels (*)](#availableKernels)
-  * [getDropletSnapshots (*)](#dropletSnapshots)
-  * [getDropletBackups (*)](#dropletBackups)
-  * [getDropletActions (*)](#dropletActions)
-  * ~~createDroplet~~
-  * [deleteDroplet](#deleteDroplet)
-* **Droplet actions**
-  * ~~disableDropletBackups~~
-  * ~~rebootDroplet~~
-  * ~~powerCycleDroplet~~
-  * ~~shutdownDroplet~~
-  * ~~powerOffDroplet~~
-  * ~~powerOnDroplet~~
-  * ~~restoreDroplet~~
-  * ~~passwordResetDroplet~~
-  * ~~resizeDroplet~~
-  * ~~rebuildDroplet~~
-  * ~~renameDroplet~~
-  * ~~changeDropletKernel~~
-  * ~~enableIpv6Droplet~~
-  * ~~enableDropletPrivateNetwork~~
-  * ~~snapshotDroplet~~
-  * ~~getDropletAction~~
-* **Images**
-  * ~~listImages~~
-  * ~~listDistributionImages~~
-  * ~~listApplicationImages~~
-  * ~~getImage~~
-  * ~~getImageBySlug~~
-  * ~~updateImage~~
-  * ~~deleteImage~~
-* **Image Actions**
-  * ~~transferImage~~
-  * ~~getImageAction~~
-* **SSH Keys**
-  * ~~listSSHKeys~~
-  * ~~createSSHKey~~
-  * ~~getSSHKey~~
-  * ~~updateSSHKey~~
-  * ~~destroyKey~~
-* **Regions**
-  * [listRegions](#listRegions)
-* **Sizes**
-  * [listSizes](#listSizes)
+### Step 1: Writing the function
 
-### <a id="userInfo">getUserInformation(cb)</a>
+The function will receive a query object and a callback as arguments. It's your
+job to turn the query object into useful data which can be passed on to the
+callback.
 
-    api.getUserInformation(function(err, info) {});
+The function definition looks like this:
 
-### <a id="listActions">listActions(cb) (*)</a>
+    var myRequestFunction = function(request, callback) {
 
-    api.listActions(function(err, actions) {});
+    };
 
-### <a id="getAction">getAction(id, cb)</a>
+Your job is to take the abstract request object and turn it into an actual http
+request. After that request is done, you must then parse the returned data  
 
-    api.getAction(id, function(err, action) {});
+### Step 2: Turning the request object into an actual HTTP request
 
-### <a id="listDomains">listDomains(cb) (*)</a>
+A request object might look like this:
 
-    api.listDomains(function(err, actions) {});
-
-
-
-### <a id="listDroplets">listDroplets(cb) (*)</a>
-
-    api.listDroplets(function(err, droplets) {});
-
-### <a id="getDroplet">getDroplet(id, cb)</a>
-
-    api.getDroplet(id, function(err, droplet) {});
-
-### <a id="availableKernels">listAvailableKernels(dropletId, cb) (*)</a>
-
-    api.listAvailableKernels(function(err, kernels) {});
-
-### <a id="dropletSnapshots">getDropletSnapshots(dropletId, cb) (*)</a>
-
-    api.getDropletSnapshots(id, function(err, snapshots) {});
-
-### <a id="dropletBackups">getDropletBackups(dropletId, cb) (*)</a>
-
-    api.getDropletBackups(id, function(err, backups) {});
-
-### <a id="dropletActions">getDropletActions(dropletId, cb) (*)</a>
-
-    api.getDropletActions(id, function(err, actions) {});
-
-### <a id="deleteDroplet">deleteDroplet(dropletId, cb)</a>
-
-If the droplet has been successfully deleted, success will be true.
-
-    api.deleteDroplet(id, function(err, success) {});
-
-### <a id="listRegions">listRegions(cb)</a>
-
-    api.listRegions(function(err, regions) {});
-
-### <a id="listSizes">listSizes(cb)</a>
-
-    api.listSizes(function(err, sizes) {});
-
-## Custom requester function
-
-If you want to use your own requester function, then you must create one who's
-API mirrors the npm [request](https://www.npmjs.org/package/request) package.
-
-    var myRequester = function() {...};
-
-The function will be called like this:
-
-    myRequester({
-      uri: 'https://api.example.com/actions',
+    var request = {
+      uri: 'https://api.digitalocean.com/v2/droplets?per_page=5',
       method: 'GET',
       headers: {
         'Content-Type': 'javascript/json',
-      }
-    }, function(error, result) {
-      // result.body = "string"
-      // result.header = {header:value, header2: value}
-    })
+        'Authorization': 'Bearer ...',
+      },
+    }
 
-CORS functionality should be built into this requester function.
 
-## TODO
 
-* Exhaustive unit testing with mock requester
-* Verify success of deleteDroplet action
+### Step 3: Execute HTTP request
+
+### Step 4.A: Pass on the results through the callback
+
+### Step 4.B: Call back a new error if things went wrong
+
+
+
+The callback which is passed to your request function expects very specific
+return values;
+
+    callback(nativeError, response);
 
 ## License
 

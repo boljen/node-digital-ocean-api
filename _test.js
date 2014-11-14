@@ -1,15 +1,13 @@
 
-var API = require('./')
-  , Paginator = require('./lib/paginator');
+var API = require('./');
 
 var api = new API({
   token: require('./_token.js'),
-  requester: require('request'),
 });
 
-function display(err, res) {
+function display(err, data) {
   if (err)
-    return console.log('ERROR:', err);
+    return console.log('ERROR:', err, '\nBODY:', data);
   console.log(res);
 }
 
@@ -18,15 +16,14 @@ var setup = {
   dropletId: 3146914,
 };
 
-
-///////// INTERNAL /////////
-/*
 api._request({
   target: 'actions',
   method: 'GET',
-  limit: 10,
-  page: 3,
 }, display);
+
+///////// INTERNAL /////////
+/*
+
 
 var paginator = new Paginator({
   qry: {
