@@ -37,14 +37,11 @@ var paginator = api.paginatedRequest({
 
 paginator.getAll(display);
 
+api.getUserInfo(display);
+api.listActions().getAll(display);
 */
 
-api.getUserInfo(display);
-
 /*
-
-api.getUserInformation(display;
-api.listActions().getAll(display);
 api.getAction(setup.actionId, display);
 api.listDomains().getAll(display);
 api.createDomain

@@ -2,6 +2,17 @@
 
 A thin wrapper for the Digital Ocean API (v2)
 
+## Table of Content
+
+* [Installation]()
+* [Usage]()
+  * [Callbacks]()
+  * [Errors]()
+  * [Paginated Resources]()
+* [Methods]()
+* [Todo]()
+* [License]()
+
 ## Install
 
 First get the package through NPM
@@ -27,7 +38,7 @@ getPageRange method.
 
 ### Errors
 
-Errors are created internally thgouh the following pattern:
+Errors are created internally following the following pattern:
 
     var error = new Error('message');
     error.code = 'string_coded_error';
@@ -82,8 +93,24 @@ to find out which page it is.
 
 ## Methods
 
+Refer to the actual [API Documentation](https://developers.digitalocean.com/v2)
+to learn what the returned values can be. Bear in mind that the returned data
+is sanitized.
 
+* [getUserInfo](#getUserInfo)
+* [listActions](#listActions)
 
+### <a id="getUserInfo"></a>Get User Information
+
+    api.getUserInfo(callback);
+
+### <a id="listActions">List All Actions
+
+    // Exhaustive call (not recommended here)
+    api.listActions(callback);
+
+    // Paginator object
+    var paginator = api.listActions();
 
 ## TODO
 
