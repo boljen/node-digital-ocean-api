@@ -14,7 +14,7 @@ function display(err, data) {
 
 var setup = {
   actionId: '35394395',
-  dropletId: 3146914,
+  dropletId: 3165196,
 };
 
 /*
@@ -30,18 +30,38 @@ api.regularRequest({
   method: 'GET',
 }, 'actions', display);
 
-var paginator = api.paginatedRequest({
+api.paginatedRequest({
   target: 'actions',
   method: 'GET',
-}, 'actions');
+}, 'actions').getAll(display);
 
-paginator.getAll(display);
+// METHODS //
 
 api.getUserInfo(display);
+
 api.listActions().getAll(display);
 api.getAction(setup.actionId, display);
+
+api.listDroplets().getAll(display);
+api.getDroplet(setup.dropletId, display);
+api.listAvailableKernels(setup.dropletId, display);
+api.listDropletSnapshots(setup.dropletId, display);
+api.listDropletBackups(setup.dropletId, display);
+api.listDropletActions(setup.dropletId, display);
+api.deleteDroplet(setup.dropletId, display);
+
+
+api.listRegions().getAll(display);
+api.listSizes().getAll(display);
 */
 
+
+api.createDroplet({
+  name: 'test',
+  image: 'node-git-v2',
+  size: '512mb',
+  region: 'ams2',
+}, display);
 
 /*// NOT DONE YET!!
 api.listDomains().getAll(display);
@@ -53,14 +73,7 @@ api.retrieveDomainRecord
 api.createDomainRecord
 api.updateDomainRecord
 api.deleteDomainRecord
-api.listDroplets().getAll(display);
-api.getDroplet(setup.dropletId, display);
-api.listAvailableKernels(setup.dropletId, display);
-api.getDropletSnapshots(setup.dropletId, display);
-api.getDropletBackups(setup.dropletId, display);
-api.getDropletActions(setup.dropletId, display);
-api.createDroplet
-api.deleteDroplet(setup.dropletId, display);
+
 api.deleteDroplet
 api.disableDropletBackups
 api.rebootDroplet
@@ -92,6 +105,5 @@ api.createSSHKey
 api.getSSHKey
 api.updateSSHKey
 api.destroyKey
-api.listRegions(display);
-api.listSizes(display);
+
 */

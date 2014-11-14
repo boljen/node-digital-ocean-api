@@ -97,25 +97,123 @@ Refer to the actual [API Documentation](https://developers.digitalocean.com/v2)
 to learn what the returned values can be. Bear in mind that the returned data
 is sanitized.
 
-* [getUserInfo](#getUserInfo)
-* [listActions](#listActions)
-* [getAction](#getAction)
+Methods marked with a star (*) are paginated methods.
 
-### <a id="getUserInfo"></a>Get User Information
+* **Account**
+  * [getUserInfo](#getUserInfo)
+* **Actions**
+  * [listActions (*)](#listActions)
+  * [getAction](#getAction)
+* **Domains**
+  * ~~listDomains~~
+  * ~~createDomain~~
+  * ~~retrieveDomain~~
+  * ~~deleteDomain~~
+* **Domain Records**
+  * ~~listDomainRecords~~
+  * ~~retrieveDomainRecord~~
+  * ~~createDomainRecord~~
+  * ~~updateDomainRecord~~
+  * ~~deleteDomainRecord~~
+* **Droplets**
+  * [listDroplets (*)](#listDroplets)
+  * [getDroplet](#getDroplet)
+  * ~~listAvailableKernels~~ !! *
+  * ~~listDropletSnapshots~~!! *
+  * ~~listDropletBackups~~ !! *
+  * ~~listDropletActions~~ !! *
+  * ~~createDroplet~~ (IN PROGRESS)
+  * ~~deleteDroplet~~ !!
+* **Droplet actions**
+  * ~~disableDropletBackups~~
+  * ~~rebootDroplet~~
+  * ~~powerCycleDroplet~~
+  * ~~shutdownDroplet~~
+  * ~~powerOffDroplet~~
+  * ~~powerOnDroplet~~
+  * ~~restoreDroplet~~
+  * ~~passwordResetDroplet~~
+  * ~~resizeDroplet~~
+  * ~~rebuildDroplet~~
+  * ~~renameDroplet~~
+  * ~~changeDropletKernel~~
+  * ~~enableIpv6Droplet~~
+  * ~~enableDropletPrivateNetwork~~
+  * ~~snapshotDroplet~~
+  * ~~getDropletAction~~
+* **Images**
+  * ~~listImages~~
+  * ~~listDistributionImages~~
+  * ~~listApplicationImages~~
+  * ~~getImage~~
+  * ~~getImageBySlug~~
+  * ~~updateImage~~
+  * ~~deleteImage~~
+* **Image Actions**
+  * ~~transferImage~~
+  * ~~getImageAction~~
+* **SSH Keys**
+  * ~~listSSHKeys~~
+  * ~~createSSHKey~~
+  * ~~getSSHKey~~
+  * ~~updateSSHKey~~
+  * ~~destroyKey~~
+* **Regions**
+  * [listRegions (*)](#listRegions)
+* **Sizes**
+  * [listSizes (*)](#listSizes)
 
-    api.getUserInfo(callback);
+### <a id="getUserInfo"></a>getUserInfo
 
-### <a id="listActions"></a>List All Actions
+    api.getUserInfo(function(error, info) {
+
+    });
+
+### <a id="listActions"></a>listActions*
 
     // Exhaustive call (not recommended here)
-    api.listActions(callback);
+    api.listActions(function(error, actions) {
+
+    });
 
     // Paginator object
     var paginator = api.listActions();
 
-### <a id="getAction"></a>Retrieve an Action
+### <a id="getAction"></a>getAction
 
-    api.getAction(actionIdentifier, callback)
+    api.getAction(id, function(error, action) {
+
+    })
+
+### <a id="listDroplets"></a>listDroplets*
+
+    // Exhaustive call
+    api.listDroplets(function(error, droplets) {
+
+    });
+
+    // Paginator object
+    var paginator = api.listDroplets();
+
+### <a id="listRegions"></a>listRegions*
+
+    // Exhaustive call (recommended)
+    api.listRegions(function(error, regions) {
+
+    });
+
+    // Paginator object
+    var paginator = api.listRegions();
+
+### <a id="listSizes"></a>listSizes*
+
+    // Exhaustive call (recommended)
+    api.listSizes(function(error, sizes) {
+
+    });
+
+    // Paginator object
+    var paginator = api.listSizes();
 
 ## <a id="todo"></a>TODO
 
