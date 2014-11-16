@@ -44,10 +44,7 @@ Errors are created internally following the following pattern:
     error.code = 'string_coded_error';
     error.original = errorObject; // if applicable
 
-It's very straight forward and is built to allow the developer to easily check
-wheter errors, and which errors, have occurred.
-
-These are the top-level errors (every callback can be given these errors)
+These are the top-level errors (every callback can be return these errors)
 
 * ***request_error***: This is an error returned by the request function. When
   this error pops up, something went wrong with the request. This error will
@@ -56,10 +53,6 @@ These are the top-level errors (every callback can be given these errors)
   will most likely never occur.
 * ***internal_server_error***: When a status code between 500 and 599 is returned.
 * ***response_error***: When a status code between 400 and 499 is returned
-
-Some methods might add additional possible errors and in the future we'd like to
-further differentiate between all the errors (e.g. ratelimit exceeded, auth
-  failed, ...)
 
 ### <a id="paginated"></a>Paginated resources
 
@@ -118,10 +111,10 @@ Methods marked with a star (*) are paginated methods.
 * **Droplets**
   * [listDroplets (*)](#listDroplets)
   * [getDroplet](#getDroplet)
-  * listAvailableKernels *
-  * listDropletSnapshots *
-  * listDropletBackups *
-  * listDropletActions *
+  * listAvailableKernels (*)
+  * listDropletSnapshots (*)
+  * listDropletBackups (*)
+  * listDropletActions (*)
   * getDropletAction
   * createDroplet
   * deleteDroplet
@@ -217,9 +210,9 @@ Methods marked with a star (*) are paginated methods.
 
 ## <a id="todo"></a>TODO
 
-* All listimages functions are somewhat flawed (as they add a ?type=xxx)
-* Errors can be dealt with more gracefully..
-* There aren't all that many unit tests either
+* Image list functions which filter on type are somewhat flawed
+* Documentation
+* More testing
 
 ## <a id="license"></a>License
 
