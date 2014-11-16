@@ -14,7 +14,9 @@ function display(err, data) {
 
 var setup = {
   actionId: '35394395',
-  dropletId: 3165196,
+  dropletId: 3180748,
+  image: '7654726',
+  dropletAction: 1234,
 };
 
 /*
@@ -51,19 +53,45 @@ api.listDropletActions(setup.dropletId, display);
 api.deleteDroplet(setup.dropletId, display);
 
 
+api.powerOffDroplet(setup.dropletId, display);
+api.powerOnDroplet(setup.dropletId, display);
+
+api.createDroplet({
+  name: 'test',
+  image: setup.image,
+  size: '512mb',
+  region: 'ams2',
+}, display);
+
+api.listImages(display);
+api.listDistributionImages(display)
+api.listApplicationImages(display)
+
 api.listRegions().getAll(display);
 api.listSizes().getAll(display);
 */
 
 
-api.createDroplet({
-  name: 'test',
-  image: 'node-git-v2',
-  size: '512mb',
-  region: 'ams2',
-}, display);
 
-/*// NOT DONE YET!!
+/*
+
+api.disableDropletBackups
+api.rebootDroplet
+api.powerCycleDroplet
+api.shutdownDroplet
+api.restoreDroplet
+api.passwordResetDroplet
+api.resizeDroplet
+api.rebuildDroplet
+api.renameDroplet
+api.changeDropletKernel
+api.enableIpv6Droplet
+api.enableDropletPrivateNetwork
+api.snapshotDroplet
+
+
+
+// NOT DONE YET!!
 api.listDomains().getAll(display);
 api.createDomain
 api.retrieveDomain
@@ -74,26 +102,9 @@ api.createDomainRecord
 api.updateDomainRecord
 api.deleteDomainRecord
 
-api.deleteDroplet
-api.disableDropletBackups
-api.rebootDroplet
-api.powerCycleDroplet
-api.shutdownDroplet
-api.powerOffDroplet
-api.powerOnDroplet
-api.restoreDroplet
-api.passwordResetDroplet
-api.resizeDroplet
-api.rebuildDroplet
-api.renameDroplet
-api.changeDropletKernel
-api.enableIpv6Droplet
-api.enableDropletPrivateNetwork
-api.snapshotDroplet
 api.getDropletAction
-api.listImages
-api.listDistributionImages
-api.listApplicationImages
+
+
 api.getImage
 api.getImageBySlug
 api.updateImage

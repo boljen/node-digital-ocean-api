@@ -118,33 +118,33 @@ Methods marked with a star (*) are paginated methods.
 * **Droplets**
   * [listDroplets (*)](#listDroplets)
   * [getDroplet](#getDroplet)
-  * ~~listAvailableKernels~~ !! *
-  * ~~listDropletSnapshots~~!! *
-  * ~~listDropletBackups~~ !! *
-  * ~~listDropletActions~~ !! *
-  * ~~createDroplet~~ (IN PROGRESS)
-  * ~~deleteDroplet~~ !!
+  * listAvailableKernels *
+  * listDropletSnapshots *
+  * listDropletBackups *
+  * listDropletActions *
+  * getDropletAction
+  * createDroplet
+  * deleteDroplet
 * **Droplet actions**
-  * ~~disableDropletBackups~~
-  * ~~rebootDroplet~~
-  * ~~powerCycleDroplet~~
-  * ~~shutdownDroplet~~
-  * ~~powerOffDroplet~~
-  * ~~powerOnDroplet~~
-  * ~~restoreDroplet~~
-  * ~~passwordResetDroplet~~
-  * ~~resizeDroplet~~
-  * ~~rebuildDroplet~~
-  * ~~renameDroplet~~
-  * ~~changeDropletKernel~~
-  * ~~enableIpv6Droplet~~
-  * ~~enableDropletPrivateNetwork~~
-  * ~~snapshotDroplet~~
-  * ~~getDropletAction~~
+  * disableDropletBackups
+  * rebootDroplet
+  * powerCycleDroplet
+  * shutdownDroplet
+  * powerOffDroplet
+  * powerOnDroplet
+  * restoreDroplet
+  * passwordResetDroplet
+  * resizeDroplet
+  * rebuildDroplet
+  * renameDroplet
+  * changeDropletKernel
+  * enableIpv6Droplet
+  * enableDropletPrivateNetwork
+  * snapshotDroplet
 * **Images**
-  * ~~listImages~~
-  * ~~listDistributionImages~~
-  * ~~listApplicationImages~~
+  * listImages (*)
+  * listDistributionImages
+  * listApplicationImages
   * ~~getImage~~
   * ~~getImageBySlug~~
   * ~~updateImage~~
@@ -217,6 +217,7 @@ Methods marked with a star (*) are paginated methods.
 
 ## <a id="todo"></a>TODO
 
+* All listimages functions are somewhat flawed (as they add a ?type=xxx)
 * Errors can be dealt with more gracefully..
 * There aren't all that many unit tests either
 
