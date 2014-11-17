@@ -98,7 +98,7 @@ Methods marked with a star (*) are paginated methods.
   * [listActions (*)](#listActions)
   * [getAction](#getAction)
 * **Domains**
-  * ~~listDomains~~
+  * listDomains (*)
   * ~~createDomain~~
   * ~~retrieveDomain~~
   * ~~deleteDomain~~
@@ -138,15 +138,15 @@ Methods marked with a star (*) are paginated methods.
   * listImages (*)
   * listDistributionImages
   * listApplicationImages
-  * ~~getImage~~
-  * ~~getImageBySlug~~
-  * ~~updateImage~~
-  * ~~deleteImage~~
+  * getImage
+  * getImageBySlug
+  * updateImage
+  * deleteImage
 * **Image Actions**
   * ~~transferImage~~
   * ~~getImageAction~~
 * **SSH Keys**
-  * ~~listSSHKeys~~
+  * listSSHKeys (*)
   * ~~createSSHKey~~
   * ~~getSSHKey~~
   * ~~updateSSHKey~~
