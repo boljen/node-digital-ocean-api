@@ -24,7 +24,9 @@
   "homepage": "https://github.com/boljen/node-digital-ocean-api",
   "devDependencies": {
     "mocha": "^2.0.1",
-    "request": "^2.47.0",
     "should": "^4.3.0"
+  },
+  "dependencies": {
+    "request": "^2.47.0"
   }
 }
