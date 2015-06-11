@@ -17,7 +17,7 @@
     "v2"
   ],
   "author": "Christophe Bol",
-  "license": "LGPLv3",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/boljen/node-digital-ocean-api/issues"
   },

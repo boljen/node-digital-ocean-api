@@ -216,4 +216,4 @@ Methods marked with a star (*) are paginated methods.
 
 ## <a id="license"></a>License
 
-LGPLv3
+MIT
