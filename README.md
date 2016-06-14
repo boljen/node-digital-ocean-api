@@ -99,26 +99,30 @@ Methods marked with a star (*) are paginated methods.
   * [getAction](#getAction)
 * **Domains**
   * listDomains (*)
-  * ~~createDomain~~
-  * ~~retrieveDomain~~
-  * ~~deleteDomain~~
+  * createDomain
+  * getDomain
+  * deleteDomain
 * **Domain Records**
-  * ~~listDomainRecords~~
-  * ~~retrieveDomainRecord~~
-  * ~~createDomainRecord~~
-  * ~~updateDomainRecord~~
-  * ~~deleteDomainRecord~~
+  * listDomainRecords (*)
+  * getDomainRecord
+  * createDomainRecord
+  * updateDomainRecord
+  * deleteDomainRecord
 * **Droplets**
   * [listDroplets (*)](#listDroplets)
   * [getDroplet](#getDroplet)
   * listAvailableKernels (*)
+  * listDropletsByTag (*)
   * listDropletSnapshots (*)
   * listDropletBackups (*)
   * listDropletActions (*)
-  * getDropletAction
   * createDroplet
   * deleteDroplet
+  * deleteDropletsByTag
+  * ~~listDropletNeighbors (*)~~
+  * ~~listNeighbors (*)~~
 * **Droplet actions**
+  * ~~enableDropletBackups~~
   * disableDropletBackups
   * rebootDroplet
   * powerCycleDroplet
@@ -134,38 +138,61 @@ Methods marked with a star (*) are paginated methods.
   * enableIpv6Droplet
   * enableDropletPrivateNetwork
   * snapshotDroplet
+  * getDropletAction
 * **Images**
   * listImages (*)
   * listDistributionImages
   * listApplicationImages
+  * ~~listUserImages (*)~~
+  * ~~listImageActions (*)~~
   * getImage
   * getImageBySlug
   * updateImage
   * deleteImage
 * **Image Actions**
   * ~~transferImage~~
+  * ~~imageToSnapshot~~
   * ~~getImageAction~~
 * **SSH Keys**
-  * listSSHKeys (*)
-  * ~~createSSHKey~~
-  * ~~getSSHKey~~
-  * ~~updateSSHKey~~
-  * ~~destroyKey~~
+  * listKeys (*)
+  * createKey
+  * getKey
+  * updateKey
+  * destroyKey
 * **Regions**
   * [listRegions (*)](#listRegions)
 * **Sizes**
   * [listSizes (*)](#listSizes)
+* **Floating IPs**
+  * ~~listFloatingIPs (*)~~
+  * ~~createFloatingIP~~
+  * ~~createUnassignedFloatingIP~~
+  * ~~getFloatingIP~~
+  * ~~deleteFloatingIP~~  
+* **Floating IP Actions**
+  * ~~assignFloatingIP~~
+  * ~~unassignFloatingIP~~
+  * ~~listFloatingIPActions (*)~~
+  * ~~getFloatingIPAction~~
+* **Tags**
+  * ~~listTags (*)~~
+  * ~~createTag~~
+  * ~~getTag~~
+  * ~~updateTag~~
+  * ~~tag~~
+  * ~~untag~~
+  * ~~deleteTag~~
 
 ### <a id="getUserInfo"></a>getUserInfo
 
-    api.getUserInfo(function(error, info) {
+    api.getUserInfo(function(err, info) {
 
     });
 
 ### <a id="listActions"></a>listActions*
 
     // Exhaustive call (not recommended here)
-    api.listActions(function(error, actions) {
+    api.listActions(function(err, actions) {
 
     });
 
@@ -174,14 +201,14 @@ Methods marked with a star (*) are paginated methods.
 
 ### <a id="getAction"></a>getAction
 
-    api.getAction(id, function(error, action) {
+    api.getAction(id, function(err, action) {
 
     })
 
 ### <a id="listDroplets"></a>listDroplets*
 
     // Exhaustive call
-    api.listDroplets(function(error, droplets) {
+    api.listDroplets(function(err, droplets) {
 
     });
 
@@ -191,7 +218,7 @@ Methods marked with a star (*) are paginated methods.
 ### <a id="listRegions"></a>listRegions*
 
     // Exhaustive call (recommended)
-    api.listRegions(function(error, regions) {
+    api.listRegions(function(err, regions) {
 
     });
 
@@ -201,7 +228,7 @@ Methods marked with a star (*) are paginated methods.
 ### <a id="listSizes"></a>listSizes*
 
     // Exhaustive call (recommended)
-    api.listSizes(function(error, sizes) {
+    api.listSizes(function(err, sizes) {
 
     });
 
@@ -210,9 +237,9 @@ Methods marked with a star (*) are paginated methods.
 
 ## <a id="todo"></a>TODO
 
-* Image list functions which filter on type are somewhat flawed
-* Documentation
-* More testing
+* Image list functions which filter on type are flawed
+* Implement actual request/response testing using a local dummy server and hardcoded JSON responses.
+* Implement tagged droplet actions by adding an optional "tagged" boolean for all action methods as the second-to-last argument. Then determine tag-based lookup in a backwards-compatible way by parsing the provided arguments.
 
 ## <a id="license"></a>License
 

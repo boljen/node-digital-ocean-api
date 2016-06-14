@@ -12,6 +12,39 @@ function display(err, data) {
   console.log(data);
 }
 
+
+/*
+api.listKeys().getAll(display)
+var dummyDomain = "ndoapi-example.com"
+api.listDomains(display)
+api.createDomain({
+  name: dummyDomain,
+  ip_address: "127.0.0.1",
+}, display)
+api.getDomain(dummyDomain, display)
+api.deleteDomain(dummyDomain, display)
+
+var dummyRecord = {
+  "type": "A",
+  "name": "www",
+  "data": "127.0.0.1",
+  "priority": null,
+  "port": null,
+  "weight": null
+}
+
+// Set this manually
+var dummyRecordID = 0
+
+api.listDomainRecords(dummyDomain, display)
+api.listDomainRecords(dummyDomain).getAll(display);
+api.createDomainRecord(dummyDomain, dummyRecord, display)
+api.getDomainRecord(dummyDomain, dummyRecordID, display)
+var updateConfig = {name: "www2"}
+api.updateDomainRecord(dummyDomain, dummyRecordID, updateConfig, display)
+api.deleteDomainRecord(dummyDomain, dummyRecordID, display)
+
+
 var setup = {
   actionId: '35394395',
   dropletId: 3180748,
@@ -19,7 +52,6 @@ var setup = {
   dropletAction: 1234,
 };
 
-/*
 api.request({
   target: 'actions',
   method: 'GET',
@@ -45,12 +77,15 @@ api.listActions().getAll(display);
 api.getAction(setup.actionId, display);
 
 api.listDroplets().getAll(display);
+api.listDropletsByTag("test").getAll(display);
+
 api.getDroplet(setup.dropletId, display);
 api.listAvailableKernels(setup.dropletId, display);
 api.listDropletSnapshots(setup.dropletId, display);
 api.listDropletBackups(setup.dropletId, display);
 api.listDropletActions(setup.dropletId, display);
 api.deleteDroplet(setup.dropletId, display);
+api.deleteDropletsByTag("test", display);
 
 
 api.powerOffDroplet(setup.dropletId, display);
@@ -69,11 +104,29 @@ api.listApplicationImages(display)
 
 api.listRegions().getAll(display);
 api.listSizes().getAll(display);
-*/
 
 
 
-/*
+api.listKeys().getAll(display)
+api.createKey({
+  name: "dummy-key-name",
+  public_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAQQDDHr/jh2Jy4yALcK4JyWbVkPRaWmhck3IgCoeOO3z1e2dBowLh64QAM+Qb72pxekALga2oi4GvT+TlWNhzPH4V example",
+}, display)
+var dummyKeyID = 0
+api.getKey(dummyKeyID, display)
+api.updateKey(dummyKeyID, {
+  name: "new-dummy-key-name",
+}, display)
+api.deleteKey(dummyKeyID, display)
+
+
+
+
+
+
+
+
+
 
 api.disableDropletBackups
 api.rebootDroplet
@@ -89,32 +142,19 @@ api.enableIpv6Droplet
 api.enableDropletPrivateNetwork
 api.snapshotDroplet
 
-
-
-// NOT DONE YET!!
-api.listDomains().getAll(display);
-api.createDomain
-api.retrieveDomain
-api.deleteDomain
-api.listDomainRecords
-api.retrieveDomainRecord
-api.createDomainRecord
-api.updateDomainRecord
-api.deleteDomainRecord
+// Manually test:
 
 api.getDropletAction
-
-
 api.getImage
 api.getImageBySlug
 api.updateImage
 api.deleteImage
 api.transferImage
 api.getImageAction
-api.listSSHKeys
-api.createSSHKey
-api.getSSHKey
-api.updateSSHKey
-api.destroyKey
+
+api.listDropletsByTag
+api.deleteDropletsByTag
+
+
 
 */
