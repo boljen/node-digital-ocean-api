@@ -12,6 +12,12 @@ function display(err, data) {
   console.log(data);
 }
 
+var setup = {
+  actionId: '35394395',
+  dropletId: 17514664,
+  image: 17154032, // ubuntu 14.04.4
+  dropletAction: 1234,
+};
 
 /*
 api.listKeys().getAll(display)
@@ -45,12 +51,6 @@ api.updateDomainRecord(dummyDomain, dummyRecordID, updateConfig, display)
 api.deleteDomainRecord(dummyDomain, dummyRecordID, display)
 
 
-var setup = {
-  actionId: '35394395',
-  dropletId: 3180748,
-  image: '7654726',
-  dropletAction: 1234,
-};
 
 api.request({
   target: 'actions',
@@ -87,7 +87,7 @@ api.listDropletActions(setup.dropletId, display);
 api.deleteDroplet(setup.dropletId, display);
 api.deleteDropletsByTag("test", display);
 
-
+api.enableDropletBackups(setup.dropletId, display)
 api.powerOffDroplet(setup.dropletId, display);
 api.powerOnDroplet(setup.dropletId, display);
 
@@ -121,6 +121,23 @@ api.deleteKey(dummyKeyID, display)
 
 
 
+
+api.listTags(display)
+api.createTag({name: "test_tag"}, display)
+api.deleteTag("test_tag_2", display)
+api.getTag("test_tag_2", display)
+api.updateTag("test_tag", {name: "test_tag_2"}, display)
+
+api.enableDropletBackups(setup.dropletId, display)
+api.disableDropletBackups("test_tag", true, display)
+
+
+api.listDropletsByTag("test_tag", display)
+
+api.untag("test_tag", [{
+  resource_id: setup.dropletId,
+  resource_type: "droplet",
+}], display)
 
 
 

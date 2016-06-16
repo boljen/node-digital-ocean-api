@@ -1,6 +1,6 @@
 {
   "name": "digital-ocean-api",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "A thin wrapper for the Digital Ocean API (v2)",
   "main": "lib/api.js",
   "scripts": {

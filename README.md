@@ -83,6 +83,17 @@ to find out which page it is.
 
     });
 
+### <a id="tagged"></a>Tagged Droplet Actions
+
+Droplet actions always have a boolean and callback as it's last two arguments.
+
+    API.prototype.rebuildDroplet = function(id, image, tagged, callback)
+
+If the tagged boolean is true, the id argument will be used as a tag instead
+and the action will be performed against all droplets with the specified tag.
+In that case, the result will be an array of actions.
+
+The "tagged" argument is optional for the sake of backwards compatibility.
 
 ## <a id="methods"></a>Methods
 
@@ -119,10 +130,10 @@ Methods marked with a star (*) are paginated methods.
   * createDroplet
   * deleteDroplet
   * deleteDropletsByTag
-  * ~~listDropletNeighbors (*)~~
-  * ~~listNeighbors (*)~~
+  * listDropletNeighbors (*)
+  * listNeighbors (*)
 * **Droplet actions**
-  * ~~enableDropletBackups~~
+  * enableDropletBackups
   * disableDropletBackups
   * rebootDroplet
   * powerCycleDroplet
@@ -175,13 +186,13 @@ Methods marked with a star (*) are paginated methods.
   * ~~listFloatingIPActions (*)~~
   * ~~getFloatingIPAction~~
 * **Tags**
-  * ~~listTags (*)~~
-  * ~~createTag~~
-  * ~~getTag~~
-  * ~~updateTag~~
-  * ~~tag~~
-  * ~~untag~~
-  * ~~deleteTag~~
+  * listTags (*)
+  * createTag
+  * getTag
+  * updateTag
+  * tag
+  * untag
+  * deleteTag
 
 ### <a id="getUserInfo"></a>getUserInfo
 
@@ -239,7 +250,6 @@ Methods marked with a star (*) are paginated methods.
 
 * Image list functions which filter on type are flawed
 * Implement actual request/response testing using a local dummy server and hardcoded JSON responses.
-* Implement tagged droplet actions by adding an optional "tagged" boolean for all action methods as the second-to-last argument. Then determine tag-based lookup in a backwards-compatible way by parsing the provided arguments.
 
 ## <a id="license"></a>License
 
