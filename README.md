@@ -1,6 +1,14 @@
-# Digital Ocean API (NodeJS/Javascript)
+# UNMAINTAINED: Digital Ocean API (NodeJS/Javascript)
 
 A thin wrapper for the Digital Ocean API (v2)
+
+## ALTERNATIVES
+
+This repository is not maintained anymore. For alternatives see the [library list](https://developers.digitalocean.com/libraries/) or one of the following:
+
+* [do-wrapper](https://www.npmjs.com/package/do-wrapper)
+* [dots](https://github.com/pjpimentel/dots)
+* [digitalocean](https://www.npmjs.com/package/digitalocean)
 
 ## Table of Content
 
